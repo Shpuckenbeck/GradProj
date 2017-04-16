@@ -1,0 +1,10 @@
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.deps.json
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.runtimeconfig.json
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.runtimeconfig.dev.json
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.dll
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.pdb
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.csprojResolveAssemblyReference.cache
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.AssemblyInfo.cs
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.dll
+c:\users\jimmy\documents\visual studio 2017\Projects\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.pdb

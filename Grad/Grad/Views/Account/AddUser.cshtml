@@ -1,0 +1,71 @@
+﻿@model Grad.Models.AddUserViewModel
+
+@{
+    ViewBag.Title = "Add user";
+}
+
+<h2>New user</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Adding</h4>
+        <hr />
+        @Html.ValidationSummary(false)
+
+        <div>
+            Login
+            <div>
+                @Html.EditorFor(model => model.Login)
+            </div>
+        </div>
+
+        <div>
+            Email
+            <div>
+                @Html.EditorFor(model => model.Email)
+            </div>
+        </div>
+
+        <div>
+            Name
+            <div>
+                @Html.EditorFor(model => model.Name)
+            </div>
+        </div>
+
+        <div>
+            Surname
+            <div>
+                @Html.EditorFor(model => model.Surname)
+            </div>
+        </div>
+
+        <div>
+            Phone
+            <div>
+                @Html.EditorFor(model => model.Phone)
+            </div>
+        </div>     
+
+       
+
+        <div>
+            Password
+            <div>
+                @Html.EditorFor(model => model.Password)
+            </div>
+        </div>
+
+       
+
+        <div>
+            <div>
+                <input type="submit" value="Register" />
+            </div>
+        </div>
+    </div>
+}
