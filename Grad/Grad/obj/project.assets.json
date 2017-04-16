@@ -11000,10 +11000,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jimmy\\documents\\visual studio 2017\\Projects\\Grad\\Grad\\Grad.csproj",
+      "projectUniqueName": "C:\\Users\\Jimmy\\Documents\\GitHub\\GradProj\\Grad\\Grad\\Grad.csproj",
       "projectName": "Grad",
-      "projectPath": "C:\\Users\\Jimmy\\documents\\visual studio 2017\\Projects\\Grad\\Grad\\Grad.csproj",
-      "outputPath": "C:\\Users\\Jimmy\\documents\\visual studio 2017\\Projects\\Grad\\Grad\\obj\\",
+      "projectPath": "C:\\Users\\Jimmy\\Documents\\GitHub\\GradProj\\Grad\\Grad\\Grad.csproj",
+      "outputPath": "C:\\Users\\Jimmy\\Documents\\GitHub\\GradProj\\Grad\\Grad\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
