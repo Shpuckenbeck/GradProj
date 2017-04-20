@@ -1,0 +1,36 @@
+@model Grad.Models.ArticleRequest
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ArticleRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReqName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReqName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReqDescr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReqDescr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReqDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReqDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ArticleRequestId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
