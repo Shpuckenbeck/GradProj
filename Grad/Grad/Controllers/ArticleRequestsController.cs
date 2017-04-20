@@ -149,5 +149,61 @@ namespace Grad.Controllers
         {
             return _context.ArticleRequests.Any(e => e.ArticleRequestId == id);
         }
+//-------------------------Регистрация статьи (работает)----------------------------
+        public async Task<IActionResult> Register(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var articleRequest = await _context.ArticleRequests.SingleOrDefaultAsync(m => m.ArticleRequestId == id);
+            if (articleRequest == null)
+            {
+                return NotFound();
+            }
+            return View(articleRequest);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(int id, [Bind("ArticleRequestId,ReqName,ReqDescr,ReqDate")] ArticleRequest articleRequest)
+        {
+            if (id != articleRequest.ArticleRequestId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Article art = new Article();
+                    art.ArtDescr = articleRequest.ReqDescr;
+                    art.ArtName = articleRequest.ReqName;
+                    art.Deadline = articleRequest.ReqDate;
+                    _context.Articles.Add(art);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException) //базарю, половину этого кода наверняка можно выкинуть. но кого это волнует? явно не меня-из-настоящего
+                {
+                    if (!ArticleRequestExists(articleRequest.ArticleRequestId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                
+            }
+            _context.ArticleRequests.Remove(articleRequest);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Articles");
+
+        }
+
     }
 }
