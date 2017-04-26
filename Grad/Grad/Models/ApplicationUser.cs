@@ -44,6 +44,7 @@ namespace Grad.Models
         [Required(ErrorMessage = "Введите название")]
         [Display(Name = "Название")]
         public string ArtName { get; set; }
+        public string FileName { get; set; }
         [Required(ErrorMessage = "Введите описание")]
         [Display(Name = "Описание")]
         public string ArtDescr { get; set; }

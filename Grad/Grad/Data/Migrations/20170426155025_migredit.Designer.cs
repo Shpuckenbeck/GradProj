@@ -8,9 +8,10 @@ using Grad.Data;
 namespace Grad.Data.Migrations
 {
     [DbContext(typeof(EditorContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170426155025_migredit")]
+    partial class migredit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

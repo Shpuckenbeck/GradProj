@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Grad.Data;
 using Grad.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using System.Text;
 
 namespace Grad.Controllers
 {
@@ -150,6 +152,65 @@ namespace Grad.Controllers
         private bool ArticleExists(int id)
         {
             return _context.Articles.Any(e => e.ArticleID == id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Write(int id)
+        {
+            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
+            TextEditViewModel edmod = new TextEditViewModel();
+            if (article.FileName == null)
+                {
+                edmod.Title = article.ArtName;
+                edmod.Description = article.ArtDescr;
+            }
+
+            else //открытие файла с разбиением на абзацы
+            {
+               
+                string path = @"c:\temp\"+article.FileName + ".doc";
+                FileStream file1 = new FileStream(path, FileMode.Open);
+                using (StreamReader sr = new StreamReader(file1, System.Text.Encoding.UTF8))
+                {
+                    edmod.Title = sr.ReadLine();
+                    edmod.Description = sr.ReadLine();
+                    edmod.Text = sr.ReadToEnd();
+                    
+                }
+
+               
+            }
+            edmod.artid = article.ArticleID;
+            return View(edmod);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Write(TextEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string path = @"c:\temp\" + model.Name + ".doc";
+                FileStream file1 = new FileStream(path, FileMode.Create);
+                using (StreamWriter sw = new StreamWriter(file1))
+                {
+                    sw.WriteLine(model.Title);
+                    sw.WriteLine(model.Description);
+                    sw.Write(model.Text);
+                    
+                }
+               var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
+               article.FileName = model.Name;
+
+                //User user = new User { UserName = model.Login, Email = model.Email, PhoneNumber = model.Phone, Name = model.Name, Surname = model.Surname };
+                //IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                //if (result.Succeeded)
+                //{
+                //    return RedirectToAction("UserList", "Roles");
+                //}
+                //else
+                //    AddErrors(result);
+            }
+            return View();
         }
     }
 }

@@ -1,0 +1,54 @@
+@model Grad.Models.TextEditViewModel
+
+@{
+    ViewBag.Title = "Writing";
+}
+
+<h2>Article</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Writing</h4>
+        <hr />
+        @Html.ValidationSummary(false)
+        <input type="hidden" asp-for="artid" />
+        <div>
+            Name
+            <div>
+                @Html.EditorFor(model => model.Name)
+            </div>
+        </div>
+
+        <div>
+            Title
+            <div>
+                @Html.EditorFor(model => model.Title)
+            </div>
+        </div>
+
+        <div>
+            Description
+            <div>
+                @Html.EditorFor(model => model.Description)
+            </div>
+        </div>
+
+        <div>
+            Text
+            <div>
+                @Html.EditorFor(model => model.Text)
+            </div>
+        </div>
+
+        
+        <div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    </div>
+}
