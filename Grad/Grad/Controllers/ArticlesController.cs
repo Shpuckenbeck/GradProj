@@ -170,10 +170,12 @@ namespace Grad.Controllers
                
                 string path = @"c:\temp\"+article.FileName + ".doc";
                 FileStream file1 = new FileStream(path, FileMode.Open);
+               // Encoding enc = Encoding.UTF8;
                 using (StreamReader sr = new StreamReader(file1, System.Text.Encoding.UTF8))
                 {
                     edmod.Title = sr.ReadLine();
                     edmod.Description = sr.ReadLine();
+                    //edmod.Text = enc.GetBytes(sr.ReadToEnd());
                     edmod.Text = sr.ReadToEnd();
                     
                 }
@@ -198,8 +200,8 @@ namespace Grad.Controllers
                     sw.Write(model.Text);
                     
                 }
-               var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
-               article.FileName = model.Name;
+               //var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
+               //article.FileName = model.Name;
 
                 //User user = new User { UserName = model.Login, Email = model.Email, PhoneNumber = model.Phone, Name = model.Name, Surname = model.Surname };
                 //IdentityResult result = await _userManager.CreateAsync(user, model.Password);

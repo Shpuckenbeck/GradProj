@@ -14,7 +14,7 @@ C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.
 C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.dll
 C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\bin\Debug\netcoreapp1.1\Grad.pdb
 C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.csprojResolveAssemblyReference.cache
-C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
 C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.AssemblyInfo.cs
 C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.dll
 C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\obj\Debug\netcoreapp1.1\Grad.pdb
+C:\Users\Jimmy\Documents\GitHub\GradProj\Grad\Grad\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs

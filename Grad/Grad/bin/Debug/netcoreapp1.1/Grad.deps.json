@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "8682cf9896f7b9ca0858d851a219324dc8e566fc"
+    "signature": "06a8fb0c6d4023f1574e06ce85ace15dba774560"
   },
   "compilationOptions": {
     "defines": [
@@ -38,7 +38,8 @@
           "Microsoft.Extensions.Logging.Debug": "1.1.1",
           "Microsoft.NETCore.App": "1.1.1",
           "Microsoft.VisualStudio.Web.BrowserLink": "1.1.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.0"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.0",
+          "TinyMCE": "4.6.0"
         },
         "runtime": {
           "Grad.dll": {}
@@ -1895,6 +1896,7 @@
           "lib/netstandard1.0/System.Text.Encodings.Web.dll": {}
         }
       },
+      "tinymce/4.6.0": {},
       "libuv/1.9.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -4400,6 +4402,13 @@
       "sha512": "sha512-ilLTKoirqw+Mbt+6x1MOxZKEwflasdP5WNuo5m5rKSXtAqazlEDqdyBH1XbvENuDQUtKNeP48CI1dyDNlEAeOA==",
       "path": "system.text.encodings.web/4.3.0",
       "hashPath": "system.text.encodings.web.4.3.0.nupkg.sha512"
+    },
+    "tinymce/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XveGM9ZJpLBTsZI7+23WEEGesl5CJMJzstuFeV3DB0QM8WpUYrTYzyCZQTwhg44AKNIMMmqRG49hjALPW7CWlg==",
+      "path": "tinymce/4.6.0",
+      "hashPath": "tinymce.4.6.0.nupkg.sha512"
     },
     "libuv/1.9.1": {
       "type": "package",
