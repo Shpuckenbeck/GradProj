@@ -17,7 +17,16 @@ namespace Grad.Models
         [Required(ErrorMessage = "Задайте фамилию")]
         [Display(Name = "Фамилия")]
         public string Surname { get; set; }
-
+        [Required(ErrorMessage = "Задайте логин")]
+        [Display (Name = "Логин")]
+        public override string UserName { get; set; }
+        [Required(ErrorMessage = "Задайте номер телефона")]
+        [Display(Name = "Телефон")]
+        public override string PhoneNumber{ get; set; }
+        [Display(Name = "Телефон подтверждён")]
+        public override Boolean PhoneNumberConfirmed { get; set; }
+        [Display(Name = "Неудачный вход")]
+        public override int AccessFailedCount{ get; set; }
     }
 
     public class ArticleRequest
@@ -36,7 +45,7 @@ namespace Grad.Models
     }
 
    
-    //localdb mssqllocaldb 12.0.2000
+  
     public class Article
     {
 
@@ -58,7 +67,12 @@ namespace Grad.Models
     {
 
         public int StateId { get; set; }
-        [Required(ErrorMessage = "Введите текст примечания")]
+        [Required(ErrorMessage = "Выберите состояние")]
+        [Display(Name = "Состояние")]
+        public int StatusId { get; set; }
+        [Display(Name = "Дата")]
+        public Status Status { get; set; }
+        //[Required(ErrorMessage = "Введите текст примечания")]
         [Display(Name = "Примечание")]
         public string StateDescr { get; set; }
         [Required(ErrorMessage = "Выберите дату")]
@@ -66,8 +80,11 @@ namespace Grad.Models
         [Display(Name = "Дата")]
         public DateTime StateDate { get; set; }
         [Required(ErrorMessage = "Выберите статью")]
+        [Display(Name = "Статья")]
         public int ArticleId { get; set; }
+        [Display(Name = "Статья")]
         public Article Article { get; set; }
+
     }
 
     public class Author
@@ -96,5 +113,21 @@ namespace Grad.Models
         [DataType(DataType.DateTime)]
         [Display(Name = "Дата")]
         public DateTime NoteDate { get; set; }
+        [Display(Name ="Исправлено")]
+        public Boolean Fixed { get; set;}
+        [Display(Name = "Проверено")]
+        public Boolean Checked { get; set; }
+
     }
+
+    public class Status
+    {
+
+        public int StatusId { get; set; }
+        [Required(ErrorMessage = "Введите название состояния")]
+        [Display(Name = "Название")]
+        public string StatusName { get; set; }
+        
+    }
+
 }

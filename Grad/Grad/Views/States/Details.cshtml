@@ -1,0 +1,42 @@
+@model Grad.Models.State
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>State</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StateDescr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateDescr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Article)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Article.ArtDescr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status.StatusName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.StateId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

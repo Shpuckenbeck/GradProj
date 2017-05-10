@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Grad.Data;
 using Grad.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Grad.Controllers
 {
+    [Authorize(Roles ="user")]
     public class ArticleRequestsController : Controller
     {
         private readonly EditorContext _context;

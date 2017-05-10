@@ -30,5 +30,7 @@ namespace Grad.Data
         }
 
         public DbSet<Grad.Models.User> User { get; set; }
+
+        public DbSet<Grad.Models.Status> Status { get; set; }
     }
 }

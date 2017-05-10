@@ -10,9 +10,11 @@ using Grad.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 namespace Grad.Controllers
 {
+    [Authorize(Roles ="user")]
     public class ArticlesController : Controller
     {
         private readonly EditorContext _context;
@@ -161,26 +163,32 @@ namespace Grad.Controllers
             TextEditViewModel edmod = new TextEditViewModel();
             if (article.FileName == null)
                 {
-                edmod.Title = article.ArtName;
-                edmod.Description = article.ArtDescr;
+                //edmod.Title = article.ArtName;
+                //edmod.Description = article.ArtDescr;
             }
 
-            else //открытие файла с разбиением на абзацы
+            else 
             {
                
-                string path = @"c:\temp\"+article.FileName + ".doc";
-                FileStream file1 = new FileStream(path, FileMode.Open);
-               // Encoding enc = Encoding.UTF8;
-                using (StreamReader sr = new StreamReader(file1, System.Text.Encoding.UTF8))
+                string path = @"c:\temp\"+article.FileName + ".docx";
+                Encoding test = Encoding.UTF8;
+                using (FileStream file1 = new FileStream(path, FileMode.Open))
                 {
-                    edmod.Title = sr.ReadLine();
-                    edmod.Description = sr.ReadLine();
-                    //edmod.Text = enc.GetBytes(sr.ReadToEnd());
-                    edmod.Text = sr.ReadToEnd();
-                    
+                    byte[] filebytes = new byte[file1.Length];
+                   await file1.ReadAsync(filebytes, 0, Convert.ToInt32(file1.Length)); //await?
+                    edmod.Text = test.GetString(filebytes);
+                    edmod.Name = article.FileName;
                 }
+                // Encoding enc = Encoding.UTF8;
 
-               
+                //using (StreamReader sr = new StreamReader(file1, System.Text.Encoding.UTF8))
+                //{
+                //   byte[] 
+
+                //}
+            
+
+
             }
             edmod.artid = article.ArticleID;
             return View(edmod);
@@ -191,26 +199,26 @@ namespace Grad.Controllers
         {
             if (ModelState.IsValid)
             {
-                string path = @"c:\temp\" + model.Name + ".doc";
-                FileStream file1 = new FileStream(path, FileMode.Create);
-                using (StreamWriter sw = new StreamWriter(file1))
+                string path = @"c:\temp\" + model.Name + ".docx";
+                Encoding test = Encoding.UTF8;
+                using (FileStream file1 = new FileStream(path, FileMode.Create))
                 {
-                    sw.WriteLine(model.Title);
-                    sw.WriteLine(model.Description);
-                    sw.Write(model.Text);
-                    
+                    byte[] record = test.GetBytes(model.Text);
+                    await file1.WriteAsync(record, 0, record.Length);
+
                 }
+                //using (StreamWriter sw = new StreamWriter(file1))
+                //{
+                //    //sw.WriteLine(model.Title);
+                //    //sw.WriteLine(model.Description);
+                //    //sw.Write(model.Text);
+                    
+                //}
                //var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
                //article.FileName = model.Name;
+               // _context.Update(article);
 
-                //User user = new User { UserName = model.Login, Email = model.Email, PhoneNumber = model.Phone, Name = model.Name, Surname = model.Surname };
-                //IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                //if (result.Succeeded)
-                //{
-                //    return RedirectToAction("UserList", "Roles");
-                //}
-                //else
-                //    AddErrors(result);
+             
             }
             return View();
         }
