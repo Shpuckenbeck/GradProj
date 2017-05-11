@@ -59,9 +59,7 @@ namespace Grad.Data.Migrations
                     b.Property<int>("AuthorId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ArticleID");
-
-                    b.Property<int>("AtricleId");
+                    b.Property<int>("ArticleID");
 
                     b.Property<int>("Id");
 
@@ -164,7 +162,8 @@ namespace Grad.Data.Migrations
 
                     b.Property<string>("PasswordHash");
 
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired();
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
@@ -176,6 +175,7 @@ namespace Grad.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -301,7 +301,8 @@ namespace Grad.Data.Migrations
                 {
                     b.HasOne("Grad.Models.Article", "Article")
                         .WithMany()
-                        .HasForeignKey("ArticleID");
+                        .HasForeignKey("ArticleID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Grad.Models.User", "User")
                         .WithMany()

@@ -95,7 +95,7 @@ namespace Grad.Models
         public int Id { get; set; }
         public User User { get; set; }
         [Required(ErrorMessage = "Выберите статью")]
-        public int AtricleId { get; set; }
+        public int ArticleID { get; set; }
         public Article Article { get; set; }
     }
 
