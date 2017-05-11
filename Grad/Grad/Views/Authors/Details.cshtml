@@ -11,16 +11,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Article)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Article.ArtDescr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Id)
         </dd>
     </dl>
 </div>

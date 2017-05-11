@@ -92,7 +92,7 @@ namespace Grad.Models
 
         public int AuthorId { get; set; }
         [Required(ErrorMessage = "Выберите пользователя")]
-        public int Id { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
         [Required(ErrorMessage = "Выберите статью")]
         public int ArticleID { get; set; }

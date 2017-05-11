@@ -22,7 +22,7 @@ namespace Grad.Controllers
         // GET: Authors
         public async Task<IActionResult> Index()
         {
-            var editorContext = _context.Authors.Include(a => a.Article);
+            var editorContext = _context.Authors.Include(a => a.Article).Include(a => a.User);
             return View(await editorContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace Grad.Controllers
 
             var author = await _context.Authors
                 .Include(a => a.Article)
+                .Include(a => a.User)
                 .SingleOrDefaultAsync(m => m.AuthorId == id);
             if (author == null)
             {
@@ -49,6 +50,7 @@ namespace Grad.Controllers
         public IActionResult Create()
         {
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr");
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace Grad.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AuthorId,Id,ArticleID")] Author author)
+        public async Task<IActionResult> Create([Bind("AuthorId,UserId,ArticleID")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace Grad.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", author.ArticleID);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname", author.UserId);
             return View(author);
         }
 
@@ -83,6 +86,7 @@ namespace Grad.Controllers
                 return NotFound();
             }
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", author.ArticleID);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname", author.UserId);
             return View(author);
         }
 
@@ -91,7 +95,7 @@ namespace Grad.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AuthorId,Id,ArticleID")] Author author)
+        public async Task<IActionResult> Edit(int id, [Bind("AuthorId,UserId,ArticleID")] Author author)
         {
             if (id != author.AuthorId)
             {
@@ -119,6 +123,7 @@ namespace Grad.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", author.ArticleID);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname", author.UserId);
             return View(author);
         }
 
@@ -132,6 +137,7 @@ namespace Grad.Controllers
 
             var author = await _context.Authors
                 .Include(a => a.Article)
+                .Include(a => a.User)
                 .SingleOrDefaultAsync(m => m.AuthorId == id);
             if (author == null)
             {
