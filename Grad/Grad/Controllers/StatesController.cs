@@ -163,6 +163,39 @@ namespace Grad.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Add(int id)
+        {
+            AddStateViewModel model = new AddStateViewModel();
+            DateTime my = DateTime.Now;
+            model.date = my;
+            model.artid = id;
+            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
+            model.name = article.ArtName;
+            ViewData["status"] = new SelectList(_context.Status, "StatusId", "StatusName");
+            return View(model);
+        }
+
+        // POST: States/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(AddStateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                State state = new State();
+                state.StatusId = model.status;
+                state.ArticleId = model.artid;
+                state.StateDescr = model.descr;
+                state.StateDate = model.date;
+                _context.Add(state);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
         private bool StateExists(int id)
         {
             return _context.States.Any(e => e.StateId == id);
