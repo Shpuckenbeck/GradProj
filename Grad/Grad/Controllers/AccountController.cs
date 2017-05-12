@@ -461,7 +461,7 @@ namespace Grad.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { UserName = model.Login, Email = model.Email, PhoneNumber = model.Phone, Name = model.Name, Surname = model.Surname };
+                User user = new User { UserName = model.Login, Email = model.Email, PhoneNumber = model.Phone, Name = model.Name, Surname = model.Surname, displayedname = model.Surname+" "+model.Name };
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

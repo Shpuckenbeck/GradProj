@@ -50,7 +50,7 @@ namespace Grad.Controllers
         public IActionResult Create()
         {
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr");
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname");
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "displayedname");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace Grad.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", author.ArticleID);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname", author.UserId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "displayedname", author.UserId);
             return View(author);
         }
 
@@ -86,7 +86,7 @@ namespace Grad.Controllers
                 return NotFound();
             }
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", author.ArticleID);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname", author.UserId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "displayedname", author.UserId);
             return View(author);
         }
 
@@ -123,7 +123,7 @@ namespace Grad.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["ArticleID"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", author.ArticleID);
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Surname", author.UserId);
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "displayedname", author.UserId);
             return View(author);
         }
 
@@ -157,6 +157,40 @@ namespace Grad.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Add(int id)
+        {
+            AddAuthViewModel model = new AddAuthViewModel();
+            model.artid = id;
+            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
+            model.name = article.ArtName;
+            ViewData["names"] = new MultiSelectList(_context.User, "Id", "displayedname");
+            return View(model);
+        }
+
+        // POST: States/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(AddAuthViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (string test in model.authors)
+                {
+                    Author auth = new Author();
+                    auth.ArticleID = model.artid;
+                    auth.UserId = test;
+                    _context.Add(auth);
+                    await _context.SaveChangesAsync();
+                }
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+            
+        
 
         private bool AuthorExists(int id)
         {

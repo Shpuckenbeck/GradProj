@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Grad</title>
 
@@ -32,13 +32,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Articles" asp-action="Index">Articles</a></li>
-                    <li><a asp-area="" asp-controller="ArticleRequests" asp-action="Index">Requests</a></li>
-                    <li><a asp-area="" asp-controller="Users" asp-action="Index">Users</a></li>
-                    <li><a asp-area="" asp-controller="Roles" asp-action="Index">Roles</a></li>
-                    <li><a asp-area="" asp-controller="Status" asp-action="Index">Statuses</a></li>
-                    <li><a asp-area="" asp-controller="States" asp-action="Index">States</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
+                    <li><a asp-area="" asp-controller="Articles" asp-action="Index">Статьи</a></li>
+                    <li><a asp-area="" asp-controller="ArticleRequests" asp-action="Index">Запросы</a></li>
+                    <li><a asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a></li>
+                    <li><a asp-area="" asp-controller="Roles" asp-action="Index">Роли</a></li>
+                    <li><a asp-area="" asp-controller="Status" asp-action="Index">Состояния</a></li>
+                    <li><a asp-area="" asp-controller="States" asp-action="Index">Статусы</a></li>
+                    <li><a asp-area="" asp-controller="Authors" asp-action="Index">Авторы</a></li>
                     
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

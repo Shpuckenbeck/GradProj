@@ -27,6 +27,8 @@ namespace Grad.Models
         public override Boolean PhoneNumberConfirmed { get; set; }
         [Display(Name = "Неудачный вход")]
         public override int AccessFailedCount{ get; set; }
+        [Display(Name = "Отображаемое имя")]
+        public string displayedname { get; set; }
     }
 
     public class ArticleRequest
@@ -89,13 +91,17 @@ namespace Grad.Models
 
     public class Author
     {
-
+        
         public int AuthorId { get; set; }
         [Required(ErrorMessage = "Выберите пользователя")]
+        [Display(Name = "Автор")]
         public string UserId { get; set; }
+        [Display(Name = "Автор")]
         public User User { get; set; }
         [Required(ErrorMessage = "Выберите статью")]
+        [Display(Name = "Статья")]
         public int ArticleID { get; set; }
+        [Display(Name = "Статья")]
         public Article Article { get; set; }
     }
 
