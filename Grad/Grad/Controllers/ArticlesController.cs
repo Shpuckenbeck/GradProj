@@ -172,14 +172,14 @@ namespace Grad.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult> Write(TextEditViewModel model)
+        public async Task<ActionResult> Write(int id, TextEditViewModel model)
         {
 
            
 
             if (ModelState.IsValid)
             {
-                var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
+                var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
                 article.content = model.Text;               
                 _context.Articles.Update(article);
                 await _context.SaveChangesAsync();
