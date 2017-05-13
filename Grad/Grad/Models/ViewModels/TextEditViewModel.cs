@@ -9,21 +9,15 @@ namespace Grad.Models
     public class TextEditViewModel
     {
         public int artid;
-        [Required(ErrorMessage = "Введите имя файла")]
-        [Display(Name = "Файл")]
-        public string Name { get; set; }
-
-        //[Required(ErrorMessage = "Задайте заголовок")]
-        //[Display(Name = "Заголовок")]
-        //public string Title { get; set; }
-
-        //[Required(ErrorMessage = "Введите описание")]
-        //[Display(Name = "Описание")]
-        //public string Description { get; set; }
+        [Display(Name = "Статья")]
+        public string Name { get; set; }       
 
         [Required(ErrorMessage = "Введите текст")]
         [Display(Name = "Текст")]
         public string Text { get; set; }
+
+        [Display(Name = "Замечания")]
+        public int[] notes{ get; set; }
 
     }
 }

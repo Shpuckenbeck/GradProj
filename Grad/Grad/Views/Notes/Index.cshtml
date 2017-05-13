@@ -1,0 +1,59 @@
+@model IEnumerable<Grad.Models.Note>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoteDescr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoteDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fixed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Checked)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteDescr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fixed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Checked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Article.ArtDescr)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NoteId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NoteId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NoteId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

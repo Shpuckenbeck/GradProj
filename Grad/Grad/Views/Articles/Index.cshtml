@@ -1,13 +1,13 @@
-@model IEnumerable<Grad.Models.Article>
+﻿@model IEnumerable<Grad.Models.Article>
 
 @{
-    ViewData["Title"] = "Articles";
+    ViewData["Title"] = "Статьи";
 }
 
-<h2>Index</h2>
+<h2>Главная</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Создать</a>
 </p>
 <table class="table">
     <thead>
@@ -37,10 +37,11 @@
                 @Html.DisplayFor(modelItem => item.Deadline)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ArticleID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ArticleID">Details</a> |
-                <a asp-action="Write" asp-route-id="@item.ArticleID">Write</a> |
-                <a asp-action="Delete" asp-route-id="@item.ArticleID">Delete</a>
+                <a asp-area="" asp-route-id="@item.ArticleID" asp-controller="Authors" asp-action="Add">Назначить авторов</a> |
+                <a asp-action="Edit" asp-route-id="@item.ArticleID">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.ArticleID">Подробно</a> |
+                <a asp-action="Write" asp-route-id="@item.ArticleID">Писать</a> |
+                <a asp-action="Delete" asp-route-id="@item.ArticleID">Удалить</a>
             </td>
         </tr>
 }

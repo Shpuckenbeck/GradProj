@@ -22,28 +22,7 @@
                 @Html.EditorFor(model => model.Name)
             </div>
         </div>
-
-        @*<div>
-            Title
-            <div>
-                @Html.EditorFor(model => model.Title)
-            </div>
-        </div>
-
-        <div>
-            Description
-            <div>
-                @Html.EditorFor(model => model.Description)
-            </div>
-        </div>*@
-
-        @*<div>
-            Text
-            <div>
-                @Html.EditorFor(model => model.Text)
-            </div>
-        </div>*@
-
+       
         <div class="form-group">
             <label asp-for="Text" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -52,6 +31,12 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label asp-for="notes" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="notes" class="form-control" asp-items="ViewBag.notes"></select>
+            </div>
+        </div>
         
         <div>
             <div>

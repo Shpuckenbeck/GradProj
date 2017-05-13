@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Grad.Controllers
 {
@@ -159,66 +160,43 @@ namespace Grad.Controllers
         [HttpGet]
         public async Task<IActionResult> Write(int id)
         {
-            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
             TextEditViewModel edmod = new TextEditViewModel();
-            if (article.FileName == null)
-                {
-                //edmod.Title = article.ArtName;
-                //edmod.Description = article.ArtDescr;
-            }
-
-            else 
-            {
-               
-                string path = @"c:\temp\"+article.FileName + ".docx";
-                Encoding test = Encoding.UTF8;
-                using (FileStream file1 = new FileStream(path, FileMode.Open))
-                {
-                    byte[] filebytes = new byte[file1.Length];
-                   await file1.ReadAsync(filebytes, 0, Convert.ToInt32(file1.Length)); //await?
-                    edmod.Text = test.GetString(filebytes);
-                    edmod.Name = article.FileName;
-                }
-                // Encoding enc = Encoding.UTF8;
-
-                //using (StreamReader sr = new StreamReader(file1, System.Text.Encoding.UTF8))
-                //{
-                //   byte[] 
-
-                //}
-            
-
-
-            }
-            edmod.artid = article.ArticleID;
+            edmod.artid = id;
+            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == edmod.artid);                 
+           
+            edmod.Name = article.ArtName;     
+            edmod.Text = article.content;
+            ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m=>m.ArticleId==id), "NoteId", "NoteDescr");
             return View(edmod);
         }
 
         [HttpPost]
+
         public async Task<ActionResult> Write(TextEditViewModel model)
         {
+
+           
+
             if (ModelState.IsValid)
             {
-                string path = @"c:\temp\" + model.Name + ".docx";
-                Encoding test = Encoding.UTF8;
-                using (FileStream file1 = new FileStream(path, FileMode.Create))
+                var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
+                article.content = model.Text;               
+                _context.Articles.Update(article);
+                await _context.SaveChangesAsync();
+                if (model.notes!=null)
                 {
-                    byte[] record = test.GetBytes(model.Text);
-                    await file1.WriteAsync(record, 0, record.Length);
+                    foreach (int i in model.notes)
+                    {
+                        var note = await _context.Notes.SingleOrDefaultAsync(m => m.NoteId == i);
+                        note.Fixed = true;
+                        _context.Notes.Update(note);
+                        await _context.SaveChangesAsync();
 
+                    }
                 }
-                //using (StreamWriter sw = new StreamWriter(file1))
-                //{
-                //    //sw.WriteLine(model.Title);
-                //    //sw.WriteLine(model.Description);
-                //    //sw.Write(model.Text);
-                    
-                //}
-               //var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
-               //article.FileName = model.Name;
-               // _context.Update(article);
 
-             
+
+
             }
             return View();
         }

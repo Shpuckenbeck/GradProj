@@ -1,0 +1,48 @@
+@model Grad.Models.Note
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Note</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteDescr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoteDescr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoteDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoteDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fixed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fixed)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Checked)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Checked)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Article)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Article.ArtDescr)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.NoteId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
