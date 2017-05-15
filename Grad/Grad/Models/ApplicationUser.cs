@@ -137,4 +137,15 @@ namespace Grad.Models
         
     }
 
+    public class Picture
+    {
+        public int PictureId { get; set; }
+        [Required(ErrorMessage = "Введите название файла")]
+        [Display(Name = "Название")]
+        public string Name { get; set; }
+        [Display(Name = "Описание")]
+        public string Descr { get; set; }
+        public byte[] Image { get; set; }
+    }
+
 }

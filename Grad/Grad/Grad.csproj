@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\js\tinymce\js\tinymce\langs\langs\ru.js" />
     <Content Include="wwwroot\js\tinymce\js\tinymce\langs\ru.js" />
   </ItemGroup>
   <ItemGroup>

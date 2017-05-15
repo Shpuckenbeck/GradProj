@@ -20,6 +20,7 @@ namespace Grad.Data
         public DbSet<State> States { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Note> Notes { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
