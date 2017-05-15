@@ -4253,7 +4253,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "TinyMCE/4.6.0": {
+      "TinyMCE/4.6.1": {
         "type": "package"
       }
     }
@@ -10976,10 +10976,10 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "TinyMCE/4.6.0": {
-      "sha512": "XveGM9ZJpLBTsZI7+23WEEGesl5CJMJzstuFeV3DB0QM8WpUYrTYzyCZQTwhg44AKNIMMmqRG49hjALPW7CWlg==",
+    "TinyMCE/4.6.1": {
+      "sha512": "VRb07S5cJjROaV0Nhl0uIlNzf34MybshRVv86eszDknqmO05IKSp0FijTNDANxqdwpIikNAAkikEXDWjn8XhoA==",
       "type": "package",
-      "path": "tinymce/4.6.0",
+      "path": "tinymce/4.6.1",
       "files": [
         "content/scripts/tinymce/jquery.tinymce.min.js",
         "content/scripts/tinymce/langs/readme.md",
@@ -11125,7 +11125,7 @@
         "content/scripts/tinymce/themes/modern/theme.min.js",
         "content/scripts/tinymce/tinymce.js",
         "content/scripts/tinymce/tinymce.min.js",
-        "tinymce.4.6.0.nupkg.sha512",
+        "tinymce.4.6.1.nupkg.sha512",
         "tinymce.nuspec"
       ]
     }
@@ -11148,7 +11148,7 @@
       "Microsoft.NETCore.App >= 1.1.1",
       "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 1.1.0",
-      "TinyMCE >= 4.6.0"
+      "TinyMCE >= 4.6.1"
     ]
   },
   "packageFolders": {
@@ -11245,7 +11245,7 @@
           },
           "TinyMCE": {
             "target": "Package",
-            "version": "4.6.0"
+            "version": "4.6.1"
           }
         },
         "imports": [

@@ -166,7 +166,7 @@ namespace Grad.Controllers
            
             edmod.Name = article.ArtName;     
             edmod.Text = article.content;
-            ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m=>m.ArticleId==id), "NoteId", "NoteDescr");
+            ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m=>(m.ArticleId==id)&&(m.Fixed==false)), "NoteId", "NoteDescr");
             return View(edmod);
         }
 
@@ -195,10 +195,9 @@ namespace Grad.Controllers
                     }
                 }
 
-
-
-            }
-            return View();
+                           }
+            string path = "/States/Add/" + id.ToString();
+            return Redirect(path);
         }
     }
 }

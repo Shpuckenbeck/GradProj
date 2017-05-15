@@ -1,10 +1,10 @@
-@model Grad.Models.TextEditViewModel
+﻿@model Grad.Models.TextEditViewModel
 
 @{
-    ViewBag.Title = "Writing";
+    ViewBag.Title = "Статья";
 }
 
-<h2>Article</h2>
+<h2>Редактирование</h2>
 
 
 @using (Html.BeginForm())
@@ -12,17 +12,18 @@
     @Html.AntiForgeryToken()
 
     <div>
-        <h4>Writing</h4>
         <hr />
         @Html.ValidationSummary(false)
         <input type="hidden" asp-for="artid" />
-        <div>
-            Name
-            <div>
-                @Html.EditorFor(model => model.Name)
+      <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
         </div>
-       
+      
         <div class="form-group">
             <label asp-for="Text" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -38,11 +39,33 @@
             </div>
         </div>
         
-        <div>
-            <div>
-                <input type="submit" value="Save" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
+<script type="text/javascript" src="~/js/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init(
+        {
+            theme: "modern",
+            selector: 'textarea',
+            branding: false,
+            width: 650,
+            height: 500,
+            language: 'ru',
+            menubar: 'edit insert view format table ',
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table textcolor colorpicker contextmenu paste code'
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor | bullist numlist outdent indent | table link image',
+            content_css: '//www.tinymce.com/css/codepen.min.css'
+
+        });
+
+</script>

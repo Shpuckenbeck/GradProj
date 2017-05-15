@@ -11,6 +11,11 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-Grad-073f364c-8ef5-4980-86f8-6192a00cc645</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\js\tinymce\js\tinymce\langs\langs\ru.js" />
+    <Content Include="wwwroot\js\tinymce\js\tinymce\langs\ru.js" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
@@ -27,12 +32,99 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
-    <PackageReference Include="TinyMCE" Version="4.6.0" />
+    <PackageReference Include="TinyMCE" Version="4.6.1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\js\tinymce\changelog.txt" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\jquery.tinymce.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\langs\readme.md" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\license.txt" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\anchor\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\autolink\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\autoresize\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\autosave\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\bbcode\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\charmap\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\codesample\css\prism.css" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\codesample\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\code\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\colorpicker\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\contextmenu\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\directionality\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\emoticons\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\fullpage\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\fullscreen\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\help\img\logo.png" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\help\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\hr\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\imagetools\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\image\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\importcss\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\link\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\lists\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\media\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\noneditable\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\pagebreak\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\paste\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\preview\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\print\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\save\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\searchreplace\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\spellchecker\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\tabfocus\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\table\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\template\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\textcolor\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\textpattern\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\toc\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\visualblocks\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\visualchars\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\plugins\wordcount\plugin.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\content.inline.min.css" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\content.min.css" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\img\anchor.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\img\loader.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\img\object.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\img\trans.gif" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\skins\lightgray\skin.min.css" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\themes\inlite\theme.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\themes\modern\theme.min.js" />
+    <None Include="wwwroot\js\tinymce\js\tinymce\tinymce.min.js" />
+    <None Include="wwwroot\js\tinymce\LICENSE.TXT" />
   </ItemGroup>
 
 </Project>
