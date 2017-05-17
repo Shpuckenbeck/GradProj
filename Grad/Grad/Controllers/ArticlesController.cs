@@ -160,14 +160,29 @@ namespace Grad.Controllers
         [HttpGet]
         public async Task<IActionResult> Write(int id)
         {
-            TextEditViewModel edmod = new TextEditViewModel();
-            edmod.artid = id;
-            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == edmod.artid);                 
-           
-            edmod.Name = article.ArtName;     
-            edmod.Text = article.content;
-            ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m=>(m.ArticleId==id)&&(m.Fixed==false)), "NoteId", "NoteDescr");
-            return View(edmod);
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var author = await _context.Authors.SingleOrDefaultAsync(m => (m.ArticleID == id)&&(m.UserId == currentUserID));
+            if (author == null)
+            {
+
+                ViewBag.Message = "Доступ закрыт";
+
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+
+                TextEditViewModel edmod = new TextEditViewModel();
+                edmod.artid = id;
+                var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == edmod.artid);
+
+                edmod.Name = article.ArtName;
+                edmod.Text = article.content;
+                ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m => (m.ArticleId == id) && (m.Fixed == false)), "NoteId", "NoteDescr");
+                return View(edmod);
+            }
         }
 
         [HttpPost]

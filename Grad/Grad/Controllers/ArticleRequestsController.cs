@@ -152,7 +152,8 @@ namespace Grad.Controllers
         {
             return _context.ArticleRequests.Any(e => e.ArticleRequestId == id);
         }
-//-------------------------Регистрация статьи (работает)----------------------------
+        //-------------------------Регистрация статьи (работает)----------------------------
+        [Authorize(Roles = "editor")]
         public async Task<IActionResult> Register(int? id)
         {
             if (id == null)
