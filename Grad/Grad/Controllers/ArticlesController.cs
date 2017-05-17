@@ -162,18 +162,21 @@ namespace Grad.Controllers
         {
             ClaimsPrincipal currentUser = this.User;
             var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var author = await _context.Authors.SingleOrDefaultAsync(m => (m.ArticleID == id)&&(m.UserId == currentUserID));
-            if (author == null)
+            var userIdentity = (ClaimsIdentity)User.Identity;
+            var claims = userIdentity.Claims;
+            var roleClaimType = userIdentity.RoleClaimType;
+            var roles = claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+            bool editorflag = false;
+            foreach (var r in roles)
             {
-
-                ViewBag.Message = "Доступ закрыт";
-
-                return RedirectToAction("Index");
-
+              if( (r.Value=="admin")|| (r.Value == "editor"))
+                {
+                    editorflag = true;
+                    break;
+                }
             }
-            else
+            if (editorflag == true)
             {
-
                 TextEditViewModel edmod = new TextEditViewModel();
                 edmod.artid = id;
                 var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == edmod.artid);
@@ -182,6 +185,30 @@ namespace Grad.Controllers
                 edmod.Text = article.content;
                 ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m => (m.ArticleId == id) && (m.Fixed == false)), "NoteId", "NoteDescr");
                 return View(edmod);
+            }
+            else
+            {
+                var author = await _context.Authors.SingleOrDefaultAsync(m => (m.ArticleID == id) && (m.UserId == currentUserID));
+                if (author == null)
+                {
+
+                    ViewBag.Message = "Доступ закрыт";
+
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+
+                    TextEditViewModel edmod = new TextEditViewModel();
+                    edmod.artid = id;
+                    var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == edmod.artid);
+
+                    edmod.Name = article.ArtName;
+                    edmod.Text = article.content;
+                    ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m => (m.ArticleId == id) && (m.Fixed == false)), "NoteId", "NoteDescr");
+                    return View(edmod);
+                }
             }
         }
 
