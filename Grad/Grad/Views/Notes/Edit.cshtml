@@ -1,14 +1,13 @@
-@model Grad.Models.Note
+﻿@model Grad.Models.Note
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Замечания";
 }
 
-<h2>Edit</h2>
+<h2>Изменить</h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Note</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="NoteId" />
@@ -51,13 +50,13 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
 

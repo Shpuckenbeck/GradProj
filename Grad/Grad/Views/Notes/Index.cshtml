@@ -1,13 +1,13 @@
-@model IEnumerable<Grad.Models.Note>
+﻿@model IEnumerable<Grad.Models.Note>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Замечания";
 }
 
-<h2>Index</h2>
+<h2>Замечания</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Article.ArtDescr)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.NoteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NoteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NoteId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.NoteId">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.NoteId">Подробно</a> |
+                <a asp-action="Delete" asp-route-id="@item.NoteId">Удалить</a>
             </td>
         </tr>
 }

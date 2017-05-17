@@ -1,14 +1,13 @@
 @model Grad.Models.AddAuthViewModel
 
 @{
-    ViewData["Title"] = "Authors";
+    ViewData["Title"] = "Авторы";
 }
 
-<h2>Add</h2>
+<h2>Добавить</h2>
 
 <form asp-action="Add">
     <div class="form-horizontal">
-        <h4>Authors</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="artid" />
@@ -27,13 +26,13 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Submit" class="btn btn-default" />
+                <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Bask to list</a>
+    <a asp-action="Index">Назад</a>
 </div>
 

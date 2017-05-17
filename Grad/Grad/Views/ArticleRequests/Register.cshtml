@@ -1,14 +1,13 @@
-@model Grad.Models.ArticleRequest
+﻿@model Grad.Models.ArticleRequest
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Заявки";
 }
 
-<h2>Register</h2>
+<h2>Зарегистрировать</h2>
 
 <form asp-action="Register">
     <div class="form-horizontal">
-        <h4>ArticleRequest</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="ArticleRequestId" />
@@ -35,14 +34,14 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-default" />
+                <input type="submit" value="Зарегистрировать" class="btn btn-default" />
             </div>
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
 
 @section Scripts {

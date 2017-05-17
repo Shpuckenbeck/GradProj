@@ -1,13 +1,13 @@
-@model IEnumerable<Grad.Models.State>
+﻿@model IEnumerable<Grad.Models.State>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Состояния";
 }
 
-<h2>Index</h2>
+<h2>Состояния</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Status.StatusName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StateId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StateId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StateId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.StateId">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.StateId">Подробно</a> |
+                <a asp-action="Delete" asp-route-id="@item.StateId">Удалить</a>
             </td>
         </tr>
 }

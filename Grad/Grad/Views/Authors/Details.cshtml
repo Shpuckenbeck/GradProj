@@ -1,13 +1,12 @@
-@model Grad.Models.Author
+﻿@model Grad.Models.Author
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Авторы";
 }
 
-<h2>Details</h2>
+<h2>Подробно</h2>
 
 <div>
-    <h4>Author</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,6 +24,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.AuthorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.AuthorId">Изменить</a> |
+    <a asp-action="Index">Назад</a>
 </div>

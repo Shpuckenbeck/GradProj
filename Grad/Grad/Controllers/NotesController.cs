@@ -57,10 +57,12 @@ namespace Grad.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NoteId,ArticleId,NoteDescr,NoteDate,Fixed,Checked")] Note note)
+        public async Task<IActionResult> Create([Bind("NoteId,ArticleId,NoteDescr,NoteDate")] Note note)
         {
             if (ModelState.IsValid)
             {
+                note.Fixed = false;
+                note.Checked = false;
                 _context.Add(note);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
