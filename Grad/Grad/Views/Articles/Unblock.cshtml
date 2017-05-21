@@ -1,0 +1,41 @@
+﻿@model Grad.Models.Article
+
+@{
+    ViewData["Title"] = "Разблокировка";
+}
+
+<div>
+    <h1 class="text-danger">Данная статья заблокирована</h1>
+    <p class="text-danger">Вы уверены, что хотите открыть к ней доступ?</p>
+</div>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArtName)
+        </dd>
+        
+    </dl>
+</div>
+
+<form asp-action="Unblock">
+    <div class="form-horizontal">
+
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ArticleID" />
+       
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Открыть" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>

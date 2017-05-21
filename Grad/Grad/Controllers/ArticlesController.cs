@@ -189,7 +189,17 @@ namespace Grad.Controllers
         {
             return _context.Articles.Any(e => e.ArticleID == id);
         }
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
 
+        [HttpGet]
+        public IActionResult Blocked()
+        {
+            return View();
+        }
         [HttpGet]
         public async Task<IActionResult> Write(int id)
         {
@@ -214,33 +224,54 @@ namespace Grad.Controllers
                 edmod.artid = id;
                 var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == edmod.artid);
 
-                edmod.Name = article.ArtName;
-                edmod.Text = article.content;
-                ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m => (m.ArticleId == id) && (m.Fixed == false)), "NoteId", "NoteDescr");
-                return View(edmod);
+                if ((article.blocked == null) || (article.blocked == currentUserID))
+                {
+
+                    edmod.Name = article.ArtName;
+                    edmod.Text = article.content;
+                    ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m => (m.ArticleId == id) && (m.Fixed == false)), "NoteId", "NoteDescr");
+                    if (article.blocked == null)
+                    {
+                        article.blocked = currentUserID;
+                        _context.Update(article);
+                        await _context.SaveChangesAsync();
+                    }
+                    return View(edmod);
+                }
+                else return RedirectToAction("Blocked");
             }
             else
             {
                 var author = await _context.Authors.SingleOrDefaultAsync(m => (m.ArticleID == id) && (m.UserId == currentUserID));
                 if (author == null)
                 {
+                    
 
-                    ViewBag.Message = "Доступ закрыт";
-
-                    return RedirectToAction("Index");
+                    return RedirectToAction("AccessDenied");
 
                 }
                 else
                 {
+                    
 
                     TextEditViewModel edmod = new TextEditViewModel();
                     edmod.artid = id;
                     var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == edmod.artid);
+                    if ((article.blocked == null) || (article.blocked == currentUserID))
+                    {
 
-                    edmod.Name = article.ArtName;
+                        edmod.Name = article.ArtName;
                     edmod.Text = article.content;
                     ViewData["notes"] = new MultiSelectList(_context.Notes.Where(m => (m.ArticleId == id) && (m.Fixed == false)), "NoteId", "NoteDescr");
-                    return View(edmod);
+                        if (article.blocked == null)
+                        {
+                            article.blocked = currentUserID;
+                            _context.Update(article);
+                            await _context.SaveChangesAsync();
+                        }
+                        return View(edmod);
+                    }
+                    else return RedirectToAction("Blocked");
                 }
             }
         }
@@ -255,7 +286,8 @@ namespace Grad.Controllers
             if (ModelState.IsValid)
             {
                 var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
-                article.content = model.Text;               
+                article.content = model.Text;
+                article.blocked = null;
                 _context.Articles.Update(article);
                 await _context.SaveChangesAsync();
                 if (model.notes!=null)
@@ -273,6 +305,34 @@ namespace Grad.Controllers
                            }
             string path = "/States/Add/" + id.ToString();
             return Redirect(path);
+        }
+
+        [Authorize(Roles = "editor")]
+        public async Task<IActionResult> Unblock(int id)
+        {
+            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
+            return View(article);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Unblock(Article model, int id)
+        {
+            
+             await Open(id);
+            
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Open (int id)
+        {
+            var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == id);
+            article.blocked = null;
+            _context.Articles.Update(article);
+            await _context.SaveChangesAsync();
+            
+
+            return View();
         }
 
         //public IActionResult Export(int id)
