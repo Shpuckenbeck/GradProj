@@ -1,14 +1,13 @@
-@model Grad.Models.State
+﻿@model Grad.Models.State
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Состояния";
 }
 
-<h2>Delete</h2>
+<h2>Удалить</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Удалить состояние?</h3>
 <div>
-    <h4>State</h4>
     <hr />
     <dl class="dl-horizontal">
         <input type="hidden" asp-for="StateId" />
@@ -40,8 +39,8 @@
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            <a asp-action="Index">Назад</a>
         </div>
     </form>
 </div>

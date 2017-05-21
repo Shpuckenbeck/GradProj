@@ -1,13 +1,12 @@
-@model Grad.Models.State
+﻿@model Grad.Models.State
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Состояния";
 }
 
-<h2>Details</h2>
+<h2>Подробно</h2>
 
 <div>
-    <h4>State</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -37,6 +36,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.StateId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.StateId">Изменить</a> |
+    <a asp-action="Index">Назад</a>
 </div>
