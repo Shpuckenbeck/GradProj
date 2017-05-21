@@ -64,6 +64,8 @@ namespace Grad.Models
         [DataType(DataType.Date)]
         [Display(Name = "Срок сдачи")]
         public DateTime Deadline { get; set; }
+        [Display(Name = "Заблокирована")]
+        public string blocked { get; set; }
     }
 
     public class State
@@ -112,6 +114,7 @@ namespace Grad.Models
         public int NoteId { get; set; }
         [Required]
         public int ArticleId { get; set; }
+        [Display(Name = "Статья")]
         public Article Article { get; set; }
         [Required(ErrorMessage = "Введите текст замечания")]
         [Display(Name = "Замечание")]
@@ -145,7 +148,7 @@ namespace Grad.Models
         public string Name { get; set; }
         [Display(Name = "Описание")]
         public string Descr { get; set; }
-        public byte[] Image { get; set; }
+        public string Path { get; set; }
     }
 
 }

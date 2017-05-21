@@ -1,13 +1,13 @@
-@model IEnumerable<Grad.Models.User>
+﻿@model IEnumerable<Grad.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Пользователи";
 }
 
-<h2>Index</h2>
+<h2>Пользователи</h2>
 
 <p>
-    <a asp-area="" asp-controller="Account" asp-action="AddUser">Create New</a>
+    <a asp-area="" asp-controller="Account" asp-action="AddUser">Создать</a>
 </p>
 <table class="table">
     <thead>
@@ -51,9 +51,8 @@
             </td>
             
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Подробно</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
 }

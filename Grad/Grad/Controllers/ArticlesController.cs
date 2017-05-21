@@ -12,6 +12,7 @@ using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using System.Diagnostics;
 
 namespace Grad.Controllers
 {
@@ -47,6 +48,38 @@ namespace Grad.Controllers
             }
 
             return View(article);
+        }
+
+        private string Convert(string source)
+        {
+            string processName = @"C:\Users\Jimmy\Appdata\Local\Pandoc\pandoc.exe";
+            string args = String.Format(@"-r html -t docx");
+
+            ProcessStartInfo psi = new ProcessStartInfo(processName, args);
+
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardInput = true;
+
+            Process p = new Process();
+            p.StartInfo = psi;
+            psi.UseShellExecute = false;
+            p.Start();
+
+            string outputString = "";
+            byte[] inputBuffer = Encoding.UTF8.GetBytes(source);
+            p.StandardInput.BaseStream.Write(inputBuffer, 0, inputBuffer.Length);
+            //p.StandardInput.Close();
+            
+
+            p.WaitForExit(2000);
+            using (System.IO.StreamReader sr = new System.IO.StreamReader(
+                                                   p.StandardOutput.BaseStream))
+            {
+
+                outputString = sr.ReadToEnd();
+            }
+
+            return outputString;
         }
 
         // GET: Articles/Create
@@ -241,5 +274,44 @@ namespace Grad.Controllers
             string path = "/States/Add/" + id.ToString();
             return Redirect(path);
         }
+
+        //public IActionResult Export(int id)
+        //{
+        //    ExportViewModel model = new ExportViewModel();
+        //    model.artid = id;
+        //    return View(model);
+        //}
+
+        //// POST: Articles/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Export(ExportViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        string path = @"c:\temp\" + model.filename + ".docx";
+        //        Encoding test = Encoding.UTF8;
+        //        var article = await _context.Articles.SingleOrDefaultAsync(m => m.ArticleID == model.artid);
+        //        Article testart = new Article();
+        //        string scr = article.content;
+        //        string output = Convert(scr);
+        //        //testart.ArtName = "Debug";
+        //        //testart.ArtDescr = "test";
+        //        //testart.Deadline = DateTime.Now;
+        //        //testart.content = output;
+        //        //_context.Articles.Add(testart);
+        //        //await _context.SaveChangesAsync();
+        //        using (FileStream file1 = new FileStream(path, FileMode.Create))
+        //        {
+        //            byte[] record = test.GetBytes(output);
+        //            await file1.WriteAsync(record, 0, record.Length);
+
+        //        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    return RedirectToAction("Index");
+        //}
     }
 }

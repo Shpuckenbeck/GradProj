@@ -9,6 +9,11 @@ using Grad.Data;
 using Grad.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System.IO;
+using System.Text;
+using System.Security.Claims;
+using System.Diagnostics;
+
 
 namespace Grad.Controllers
 {
@@ -178,10 +183,26 @@ namespace Grad.Controllers
         // POST: States/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(AddStateViewModel model)
         {
+            ClaimsPrincipal currentUser = this.User;
+            var currentUserID = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userIdentity = (ClaimsIdentity)User.Identity;
+            var claims = userIdentity.Claims;
+            var roleClaimType = userIdentity.RoleClaimType;
+            var roles = claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+            bool editorflag = false;
+            foreach (var r in roles)
+            {
+                if ((r.Value == "admin") || (r.Value == "editor"))
+                {
+                    editorflag = true;
+                    break;
+                }
+            }
             if (ModelState.IsValid)
             {
                 State state = new State();
@@ -191,6 +212,12 @@ namespace Grad.Controllers
                 state.StateDate = model.date;
                 _context.Add(state);
                 await _context.SaveChangesAsync();
+                if (editorflag == true)
+                {
+                    string path = "/Notes/Add/" + model.artid.ToString();
+                    return Redirect(path);
+                }
+                else
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

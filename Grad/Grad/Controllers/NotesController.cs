@@ -7,9 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Grad.Data;
 using Grad.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Diagnostics;
 
 namespace Grad.Controllers
 {
+    [Authorize(Roles = "user")]
     public class NotesController : Controller
     {
         private readonly EditorContext _context;
@@ -46,6 +53,7 @@ namespace Grad.Controllers
         }
 
         // GET: Notes/Create
+        [Authorize(Roles = "editor")]
         public IActionResult Create()
         {
             ViewData["ArticleId"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr");
@@ -55,6 +63,7 @@ namespace Grad.Controllers
         // POST: Notes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NoteId,ArticleId,NoteDescr,NoteDate")] Note note)
@@ -70,7 +79,7 @@ namespace Grad.Controllers
             ViewData["ArticleId"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", note.ArticleId);
             return View(note);
         }
-
+        [Authorize(Roles = "editor")]
         // GET: Notes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -91,6 +100,7 @@ namespace Grad.Controllers
         // POST: Notes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("NoteId,ArticleId,NoteDescr,NoteDate,Fixed,Checked")] Note note)
@@ -123,7 +133,7 @@ namespace Grad.Controllers
             ViewData["ArticleId"] = new SelectList(_context.Articles, "ArticleID", "ArtDescr", note.ArticleId);
             return View(note);
         }
-
+        [Authorize(Roles = "editor")]
         // GET: Notes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -153,7 +163,39 @@ namespace Grad.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "editor")]
+        public IActionResult Add(int id)
+        {
+            Note model = new Note();
+            DateTime my = DateTime.Now;
+            model.NoteDate = my;
+            model.ArticleId = id;
+            return View(model);
+        }
 
+        // POST: States/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(Note model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Checked = false;
+                model.Fixed = false;
+                _context.Add(model);
+                await _context.SaveChangesAsync();
+                Note model1 = new Note();
+                DateTime my = DateTime.Now;
+                model1.NoteDate = my;
+                model1.NoteDescr = "";
+                model1.ArticleId = model.ArticleId;
+                return View(model1);
+            }
+            return RedirectToAction("Index");
+        }
+       
         private bool NoteExists(int id)
         {
             return _context.Notes.Any(e => e.NoteId == id);

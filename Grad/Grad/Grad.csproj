@@ -125,5 +125,8 @@
     <None Include="wwwroot\js\tinymce\js\tinymce\tinymce.min.js" />
     <None Include="wwwroot\js\tinymce\LICENSE.TXT" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\" />
+  </ItemGroup>
 
 </Project>
