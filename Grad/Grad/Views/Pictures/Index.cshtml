@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Grad.Models.Picture>
 @{
-    ViewData["Title"] = "Добавление файла";
+    ViewData["Title"] = "Изображения";
 }
 <h3>Выберите файл для загрузки</h3>
 <form asp-action="AddFile" asp-controller="Pictures" method="post" enctype="multipart/form-data">
@@ -9,7 +9,33 @@
 </form>
 
 <h3>Все файлы</h3>
-@foreach (var f in Model)
-{
-    <p><img src="@Url.Content(f.Path)"></p>
-}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Изображение
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <p><img style='width:160px; height:120px;' src="@Url.Content(item.Path)"></p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.PictureId">Подробно</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

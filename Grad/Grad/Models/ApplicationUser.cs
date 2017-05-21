@@ -146,8 +146,8 @@ namespace Grad.Models
         [Required(ErrorMessage = "Введите название файла")]
         [Display(Name = "Название")]
         public string Name { get; set; }
-        [Display(Name = "Описание")]
-        public string Descr { get; set; }
+        [Display(Name = "Дата")]
+        public DateTime uploaddate { get; set; }
         public string Path { get; set; }
     }
 

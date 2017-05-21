@@ -45,7 +45,8 @@ namespace Grad.Controllers
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-                Picture file = new Picture { Name = uploadedFile.FileName, Path = path };
+                DateTime my = DateTime.Now;
+                Picture file = new Picture { Name = uploadedFile.FileName, Path = path, uploaddate = my };
                 _context.Pictures.Add(file);
                 _context.SaveChanges();
             }
@@ -65,12 +66,30 @@ namespace Grad.Controllers
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-                Picture file = new Picture { Name = uploadedFile.FileName, Path = path };
+                DateTime my = DateTime.Now;
+                Picture file = new Picture { Name = uploadedFile.FileName, Path = path, uploaddate = my };
                 _context.Pictures.Add(file);
             }
             _context.SaveChanges();
 
             return RedirectToAction("AddFile");
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var picRequest = await _context.Pictures
+                .SingleOrDefaultAsync(m => m.PictureId == id);
+            if (picRequest == null)
+            {
+                return NotFound();
+            }
+
+            return View(picRequest);
         }
     }
 }

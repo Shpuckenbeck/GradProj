@@ -1,13 +1,12 @@
-@model Grad.Models.Picture
+﻿@model Grad.Models.Picture
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Изображения";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
 <div>
-    <h4>Picture</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -17,20 +16,21 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Descr)
+            @Html.DisplayNameFor(model => model.uploaddate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Descr)
+            @Html.DisplayFor(model => model.uploaddate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Path)
+            Оригинал
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Path)
-        </dd>
+        
     </dl>
 </div>
+<div class="display-field">
+    <img src="@Url.Content(@Model.Path)" />
+</div> 
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PictureId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
