@@ -101,10 +101,19 @@ namespace Grad
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));
             }
-            //if (await roleManager.FindByNameAsync("user") == null)
-            //{
-            //    await roleManager.CreateAsync(new IdentityRole("user"));
-            //}
+            if (await roleManager.FindByNameAsync("user") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("user"));
+            }
+
+            if (await roleManager.FindByNameAsync("photos") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("photos"));
+            }
+            if (await roleManager.FindByNameAsync("editor") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("editor"));
+            }
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
                 User admin = new User { Email = adminEmail, UserName = adminEmail, Name = "Иван", Surname = "Карман" };
