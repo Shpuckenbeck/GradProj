@@ -218,7 +218,7 @@ namespace Grad.Controllers
                     return Redirect(path);
                 }
                 else
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Articles");
             }
             return RedirectToAction("Index");
         }
