@@ -72,7 +72,7 @@ namespace Grad.Controllers
             }
             _context.SaveChanges();
 
-            return RedirectToAction("AddFile");
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Details(int? id)

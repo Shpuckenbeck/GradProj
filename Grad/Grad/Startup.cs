@@ -114,15 +114,15 @@ namespace Grad
             {
                 await roleManager.CreateAsync(new IdentityRole("editor"));
             }
-            if (await userManager.FindByNameAsync(adminEmail) == null)
-            {
-                User admin = new User { Email = adminEmail, UserName = adminEmail, Name = "Иван", Surname = "Карман" };
-                IdentityResult result = await userManager.CreateAsync(admin, password);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(admin, "admin");
-                }
-            }
+            //if (await userManager.FindByNameAsync(adminEmail) == null)
+            //{
+            //    User admin = new User { Email = adminEmail, UserName = adminEmail, Name = "Иван", Surname = "Карман" };
+            //    IdentityResult result = await userManager.CreateAsync(admin, password);
+            //    if (result.Succeeded)
+            //    {
+            //        await userManager.AddToRoleAsync(admin, "admin");
+            //    }
+            //}
 
             
         }
