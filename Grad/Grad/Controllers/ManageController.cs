@@ -10,6 +10,14 @@ using Microsoft.Extensions.Options;
 using Grad.Models;
 using Grad.Models.ManageViewModels;
 using Grad.Services;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Grad.Data;
+using System.IO;
+using System.Text;
+using System.Diagnostics;
+
 
 namespace Grad.Controllers
 {
@@ -45,12 +53,13 @@ namespace Grad.Controllers
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Пароль изменён"
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.ChangeUserSuccess ? "Данные изменены"
                 : "";
 
             var user = await GetCurrentUserAsync();
@@ -241,7 +250,35 @@ namespace Grad.Controllers
             }
             return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
         }
+        [HttpGet]
+        public async Task<IActionResult> ChangeUser()
+        {
+            var user = await GetCurrentUserAsync();
+            ChangeUserViewModel model = new ChangeUserViewModel();
+            model.Name = user.Name;
+            model.Login = user.UserName;
+            model.Surname = user.Surname;
+            model.Email = user.Email;
+            model.Phone = user.PhoneNumber;
+           
+            return View(model);
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> ChangeUser(ChangeUserViewModel model)
+        {
+            var user = await GetCurrentUserAsync();
+
+            user.Email = model.Email;
+            user.Name = model.Name;
+            user.PhoneNumber = model.Phone;
+            user.Surname = model.Surname;
+            user.UserName = model.Login;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangeUserSuccess });
+        }
         //
         // GET: /Manage/SetPassword
         [HttpGet]
@@ -360,7 +397,8 @@ namespace Grad.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            ChangeUserSuccess
         }
 
         private Task<User> GetCurrentUserAsync()
