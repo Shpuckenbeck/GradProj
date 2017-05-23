@@ -81,7 +81,7 @@ namespace Grad.Controllers
             ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", state.StatusId);
             return View(state);
         }
-
+        [Authorize(Roles = "editor")]
         // GET: States/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -136,7 +136,7 @@ namespace Grad.Controllers
             ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusName", state.StatusId);
             return View(state);
         }
-
+        [Authorize(Roles = "editor")]
         // GET: States/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

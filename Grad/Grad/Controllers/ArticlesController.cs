@@ -81,7 +81,7 @@ namespace Grad.Controllers
 
             return outputString;
         }
-
+        [Authorize(Roles = "editor")]
         // GET: Articles/Create
         public IActionResult Create()
         {
@@ -103,7 +103,7 @@ namespace Grad.Controllers
             }
             return View(article);
         }
-
+        [Authorize(Roles = "editor")]
         // GET: Articles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

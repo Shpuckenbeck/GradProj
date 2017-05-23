@@ -18,6 +18,7 @@ using System.Diagnostics;
 
 namespace Grad.Controllers
 {
+    [Authorize]
     public class PicturesController : Controller
     {
         private readonly EditorContext _context;

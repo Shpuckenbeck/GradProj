@@ -455,7 +455,7 @@ namespace Grad.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult> AddUser(AddUserViewModel model)
         {

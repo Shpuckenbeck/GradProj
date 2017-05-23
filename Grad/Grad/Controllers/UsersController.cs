@@ -7,9 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Grad.Data;
 using Grad.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.IO;
+using System.Text;
+using System.Security.Claims;
+using System.Diagnostics;
 
 namespace Grad.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         private readonly EditorContext _context;

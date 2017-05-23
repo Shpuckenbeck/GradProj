@@ -118,7 +118,7 @@ namespace Grad.Controllers
             }
             return View(articleRequest);
         }
-
+        [Authorize(Roles = "editor")]
         // GET: ArticleRequests/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

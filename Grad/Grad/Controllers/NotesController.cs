@@ -16,7 +16,7 @@ using System.Diagnostics;
 
 namespace Grad.Controllers
 {
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "editor")]
     public class NotesController : Controller
     {
         private readonly EditorContext _context;
