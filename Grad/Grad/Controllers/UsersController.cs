@@ -16,7 +16,7 @@ using System.Diagnostics;
 
 namespace Grad.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly EditorContext _context;
@@ -31,7 +31,7 @@ namespace Grad.Controllers
         {
             return View(await _context.User.ToListAsync());
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Users/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -126,7 +126,7 @@ namespace Grad.Controllers
             }
             return View(user);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(string id)
         {

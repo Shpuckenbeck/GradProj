@@ -1,13 +1,12 @@
-@model Grad.Models.User
+﻿@model Grad.Models.User
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Пользователи";
 }
 
-<h2>Details</h2>
+<h2>Подробно</h2>
 
 <div>
-    <h4>User</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -40,18 +39,8 @@
         <dd>
             @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </dt>
-        <dt>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
