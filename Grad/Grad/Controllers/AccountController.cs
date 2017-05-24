@@ -70,7 +70,7 @@ namespace Grad.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Manage");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -141,7 +141,7 @@ namespace Grad.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
